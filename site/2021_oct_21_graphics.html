@@ -1,0 +1,40 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h3>My understanding of multi media programming as of 21-oct-2021</h3>
+<p>I spent few hours of reading about multi media programming and found following</p>
+<ol>
+<li>The old technology (industry standerd) was <strong>OpenGl</strong> and that still stays but is slowly dieing.</li>
+<li>OpenGl was extended to be usable in web space as <strong>WebGl</strong>.</li>
+<li>OpenGl as well as WebGl both suffered from many problems and there was a need for a new API.</li>
+<li><strong>Vulcan</strong> is the new low level API. It is the new thing and is very fast as compared to OpenGl. It provides a lot of power to the user but at the same time it is more complex and more low level than OpenGl.</li>
+<li>I think vulcan make use of GPU for processing.</li>
+<li><strong>vulkano</strong> is the rust wrapper crate for Vulcan.</li>
+<li>Just like WebGl was the web implementation of OpenGl similarly <strong>WebGPU is the web implementation of Vulcan</strong>. So WebGPU is the future of web graphics but is still under experimental flag.</li>
+</ol>
+<hr />
+<h2>Conclusion</h2>
+<ol>
+<li>For the time being material and tutorials on the Vulcan as well as WebGPU are very less.</li>
+<li>It will NOT be a bad idea to try WebGl for a while since its available every where and is not being depricated anytime soon. Also the study material may be available a lot. also the basic techniques are the same.</li>
+<li>You must learn Rust and then Webassembly first for that.</li>
+</ol>
+
+    </body>
+</html>
+    

@@ -1,0 +1,38 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Closure and other stuff</h1>
+<p>What I dont understand ?</p>
+<ol>
+<li>where we use closures ? some examples of useful closures usage, also practice sending and recieveing closures from functions.</li>
+<li>Using map , filter and iterators.</li>
+<li>Read about Debug triat and other such traits to understand how they are implemented in std library.</li>
+</ol>
+<hr />
+<p>Iterator trait has 70 something methods and all you need to do is implement one (next).
+The iterator trait is at its base a glorified for loop. The one who made the type also implements the for loop for that type in form of <strong>next</strong> method when he implements the Iterator trait.
+<em>The next function has code for a &quot;for loop&quot; for a type</em>.
+When we loop through an Iterator it has to <em>change its internal state</em> to keep track of the count, for this purpose when an Iterator has reached to its end we discard it (consider it consumed) and get a new one. We do not want to send and recieve Iterators with different internal states.</p>
+<blockquote>
+<p>The big thing is that once you implement next method you also get some 70 other methods free
+<a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html">Iterator std library</a></p>
+</blockquote>
+
+    </body>
+</html>
+    

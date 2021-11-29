@@ -1,0 +1,35 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Creating File</h1>
+<p>================
+Creating a Simple file.</p>
+<pre><code class="language-rust">use std::fs::File;
+use std::io::Write;
+fn main() {
+    let file_name = &quot;test_doc.txt&quot;;
+    let mut my_file = File::create(file_name).expect(&quot;creation failed&quot;);
+    my_file.write_all(&quot;This is the first message&quot;.as_bytes()).expect(&quot;write failed&quot;);
+    my_file.write_all(&quot; Keep working&quot;.as_bytes()).expect(&quot;write failed&quot;);
+    println!(&quot;The file has been created and text has been added:)&quot;);
+}
+</code></pre>
+
+    </body>
+</html>
+    

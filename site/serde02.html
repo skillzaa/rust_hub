@@ -1,0 +1,71 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Serde json</h1>
+<p>This is an example of Serde serializing and deserializing vector of structs.</p>
+<pre><code class="language-rust">use std::fs::File;
+use std::io::Write;
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
+
+#[derive(Serialize, Deserialize)]
+#[derive(Debug)]
+struct Person {
+    name: String,
+    age: u8,
+}
+
+fn main() -&gt; Result&lt;()&gt; {
+    deserialize()?;
+    serialize()?;
+   Ok(())
+}
+//========================
+fn deserialize()-&gt;Result&lt;()&gt;{
+     // Some JSON input data as a &amp;str. Maybe this comes from the user.
+     let data = r#&quot;
+     [{
+         &quot;name&quot;: &quot;John Doe&quot;,
+         &quot;age&quot;: 43
+     },
+     {
+        &quot;name&quot;: &quot;Jane Michels&quot;,
+        &quot;age&quot;: 35
+    }]
+     &quot;#;
+ let pers: Vec&lt;Person&gt; = serde_json::from_str(data)?;
+ println!(&quot;Pers {:?}&quot;, pers);
+
+ Ok(())
+}
+fn serialize()-&gt;Result&lt;()&gt;{
+    let mut j : Vec&lt;Person&gt; = Vec::new();
+    j.push(Person { name: String::from(&quot;jill&quot;), age: 96 });
+    j.push(Person { name: String::from(&quot;mike&quot;), age: 11 });
+    j.push(Person { name: String::from(&quot;nikey&quot;), age: 33 });
+
+    let pers:String = serde_json::to_string(&amp;j)?;
+    println!(&quot;serialize {}&quot;,pers);
+    Ok(())
+}
+
+</code></pre>
+
+    </body>
+</html>
+    

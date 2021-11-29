@@ -1,0 +1,41 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Hash Map - Part 1</h1>
+<pre><code class="language-rust">fn main(){
+use std::collections::HashMap;
+let mut hm:HashMap &lt;String,u128&gt; = HashMap::new();
+
+hm.insert(&quot;one&quot;.to_string(),1);
+hm.insert(&quot;two&quot;.to_string(),2);
+hm.insert(&quot;three&quot;.to_string(),3);
+hm.insert(&quot;four&quot;.to_string(),4);
+hm.insert(&quot;five&quot;.to_string(),5);
+
+for (key, value) in &amp;hm {
+    println!(&quot;{}: {}&quot;, key, value);
+}
+
+
+
+}
+</code></pre>
+
+    </body>
+</html>
+    

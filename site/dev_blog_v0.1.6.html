@@ -1,0 +1,62 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h2>Development Blog</h2>
+<p>2021-11-08</p>
+<h3>Wrap , Result and Main fn</h3>
+<p>The main fn must never have unwrap. It is sinful.
+All the Result&lt;&gt; should bubble upto main where they are presented as one match statement. You actually need just one match statement at the top level in the main function if that is what you want.
+At mid levels if there is an error (from code at lower level) the mid level fn always has an option to use ? and let it bubble up to the main fn at top.
+Every process that ends in main (by the way all processes start and end in main) must have one top level match statement to manage the outcome from that process. Not having a Result and match statement at the end of a process is not logical.</p>
+<p>At times we want to discard the result of a function returning a result or an option.</p>
+<pre><code>fn some_fn ()-&gt;Result&lt;bool,Error&gt;{
+    Ok(true) 
+}
+ let _ = some_fn(); // Discarding Result
+</code></pre>
+<h3>Present Structure of the Application</h3>
+<p>At the moment Hulk has 3 layers.</p>
+<ol>
+<li>
+<p><strong>The Brown Library</strong> :
+This is the core of the app, everything is built on top of this, it has to be 100% test covered.
+The library is flat which means that there is no abstraction built at this level. There are internal fn calls but all that is just to break the work and not for abstractions. Most of the functions are just wrappers around Rust fn.
+All in all it just gives a great interface to deal with Rust file system, which is exectly its task.</p>
+</li>
+<li>
+<p><strong>controllers</strong> :
+This is where abstraction happen. I want this to be just function calls to brown library and then stitching the results.</p>
+</li>
+<li>
+<p><strong>The main function</strong> :
+As usual a place to stitch the app together.</p>
+</li>
+</ol>
+<h3>The Boring Work is the Actual Work</h3>
+<p>Once all the technical problems have been solved comes the boring work of putting it all together, but this is the actual work where the product gets polished.</p>
+<h3>Folders With many modules</h3>
+<p>If one needs a folder where he can save a number of modules the simple solution is to still export all of the modules from mod.rs using <strong>pub use</strong>.</p>
+<h3>Items to add to Brown lib</h3>
+<ul>
+<li>get_file_name -- from DirEntry</li>
+<li>get_file_ext -- from DirEntry</li>
+</ul>
+
+    </body>
+</html>
+    

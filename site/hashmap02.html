@@ -1,0 +1,58 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Hash Map - Part 2</h1>
+<pre><code class="language-rust">fn main(){
+    use std::collections::HashMap;
+    #[derive(Hash, Eq, PartialEq, Debug)]
+        struct Viking {
+            name: String,
+            country: String,
+        }
+        
+        impl Viking {
+            /// Creates a new Viking.
+            fn new(name: &amp;str, country: &amp;str) -&gt; Viking {
+                Viking { name: name.to_string(), country: country.to_string() }
+            }
+        }
+        
+        // Use a HashMap to store the vikings' health points.
+        let mut vikings:HashMap&lt;Viking,u32&gt;= HashMap::new();
+        
+        vikings.insert(Viking::new(&quot;Einar&quot;, &quot;Norway&quot;), 25);
+        vikings.insert(Viking::new(&quot;Olaf&quot;, &quot;Denmark&quot;), 24);
+        vikings.insert(Viking::new(&quot;Harald&quot;, &quot;Iceland&quot;), 12);
+        
+        // Use derived implementation to print the status of the vikings.
+        for (viking, health) in &amp;vikings {
+            println!(&quot;{:?} has {} hp&quot;, viking, health);
+        }
+        println!(&quot;--------------------&quot;);
+    
+        for (key, value) in vikings.into_iter() {
+            println!(&quot;{:?} = {}&quot;, key, value);
+            //This line will cause error : safety
+            // vikings.remove(key);
+        }
+    }
+</code></pre>
+
+    </body>
+</html>
+    

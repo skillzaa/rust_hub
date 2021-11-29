@@ -1,0 +1,57 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Some None Example</h1>
+<pre><code class="language-rust">#[derive(Debug)]
+struct Obj {
+no:u128,
+id:u128,
+}
+
+impl Obj{
+   fn new(no:u128,id:u128)-&gt;Obj{
+      Obj {
+         no:no,
+         id:id,
+      }
+   }
+}         
+
+fn main (){
+let mut v:Vec&lt;Obj&gt; = Vec::new();
+v.push(Obj::new(44, 68));
+
+//-- lets get some here
+match v.get(0) {
+                  Some(x)=&gt; println!(&quot;{:?}--Result is success i.e Some&quot;,x.no),
+                  None =&gt; println!(&quot;--Result is failure i.e None&quot;)
+}
+
+match v.get(20) {
+                  Some(x)=&gt; println!(&quot;{:?}--Result is success i.e Some&quot;,x.no),
+                  None =&gt; println!(&quot;--Result is failure i.e None&quot;)
+} 
+
+println!(&quot;{:?}&quot;,v.get(20));
+
+}
+</code></pre>
+
+    </body>
+</html>
+    

@@ -1,0 +1,102 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Ownership</h1>
+<h3>Ownership Rules</h3>
+<ol>
+<li>Each value in Rust has a variable that’s called its owner.</li>
+<li>There can only be one owner at a time.</li>
+<li>When the owner goes out of scope, the value will be dropped.</li>
+</ol>
+<hr />
+<p>We can consider <strong>String</strong> as a vector of chars. A String is always placed on <em>heap</em> that is why it can grow and shrink.
+The ownership model is not much visible on variables placed on stack(mostly primtives) since it is inexpensive to copy them.</p>
+<p><strong>String Literals</strong> ie <em>&amp;str</em> is not mutable. It is written in the code so can not be changed, however you can make copies of it and then change those.
+To convert string from string literal</p>
+<pre><code class="language-rust">let s = String::from(&quot;hello&quot;);
+or
+let t = &quot;hello&quot;.to_string();
+</code></pre>
+<p>Here we have declared a string literal, also known as a string slice.</p>
+<p>String literals have a static lifetime, which means the string hello_world is guaranteed to be valid for the duration of the entire program. We can explicitly specify hello_world’s lifetime as well:</p>
+<pre><code class="language-rust">let hello_world: &amp;'static str = &quot;Hello, world!&quot;;
+</code></pre>
+<blockquote>
+<p>How Rust creates a deep clone of a data structure ?</p>
+</blockquote>
+<h3>The Copy trait</h3>
+<p>If a type implements the Copy trait, an older variable is still usable after assignment.</p>
+<p>Rust won’t let us annotate a type with the Copy trait if the type, or any of its parts, has implemented the Drop trait.</p>
+<p>If the type needs something special to happen when the value goes out of scope and we add the Copy annotation to that type, we’ll get a compile-time error.</p>
+<p>So what types implement the Copy trait?</p>
+<p>You can check the documentation for the given type to be sure, but as a general rule, any group of simple scalar values can implement Copy, and nothing that requires allocation or is some form of resource can implement Copy. Here are some of the types that implement Copy:</p>
+<ul>
+<li>All the integer types, such as u32.</li>
+<li>The Boolean type, bool, with values true and false.</li>
+<li>All the floating point types, such as f64.</li>
+<li>The character type, char.</li>
+<li>Tuples, if they only contain types that also implement Copy.</li>
+</ul>
+<p>For example, (i32, i32) implements Copy, but (i32, String) does not.</p>
+<p>The semantics for passing a value to a function are similar to those for assigning a value to a variable. Passing a variable to a function will move or copy, just as assignment does.</p>
+<p>Returning values can also transfer ownership.</p>
+<blockquote>
+<p>The ownership of a variable follows the same pattern every time: assigning a value to another variable moves it. When a variable that includes data on the heap goes out of scope, the value will be cleaned up by drop unless the data has been moved to be owned by another variable.</p>
+</blockquote>
+<p>It’s possible to return multiple values from a function using a tuple.</p>
+<p>The &amp;s1 syntax lets us create a reference that refers to the value of s1 but does not own it. Because it does not own it, the value it points to will not be dropped when the reference stops being used.</p>
+<p>We can have a mutable reference borrow.But mutable references have one big restriction: you can have only one mutable reference to a particular piece of data at a time.</p>
+<pre><code class="language-rust">fn main() {
+    let mut s = String::from(&quot;hello&quot;);
+
+    change(&amp;mut s);
+}
+
+fn change(some_string: &amp;mut String) {
+    some_string.push_str(&quot;, world&quot;);
+}
+</code></pre>
+<p>If the reference is not mutable we can have as many copies as we want.</p>
+<h3>Dangling References</h3>
+<p>Following code creats a dangling pointer</p>
+<pre><code class="language-rust">fn main() {
+    let reference_to_nothing = dangle();
+}
+
+fn dangle() -&gt; &amp;String {
+    let s = String::from(&quot;hello&quot;);
+
+    &amp;s
+}
+</code></pre>
+<p>Here is the correct code (Other than the main fn other smaller fn should return ownership)</p>
+<pre><code class="language-rust">fn no_dangle() -&gt; String {
+    let s = String::from(&quot;hello&quot;);
+
+    s
+}
+</code></pre>
+<h3>The Rules of References</h3>
+<ul>
+<li>At any given time, you can have either one mutable reference or any number of immutable references.</li>
+<li>References must always be valid.</li>
+</ul>
+
+    </body>
+</html>
+    

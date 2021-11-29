@@ -1,0 +1,77 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Vertors in Rust Part3</h1>
+<p>Following topics are intended to be covered</p>
+<ol>
+<li>creating vector</li>
+<li>Referencing items</li>
+<li>Iterating over vec, three ways.</li>
+<li>Extract a vector out of another vector (using filters and collect).</li>
+</ol>
+<h2>Creating a vector</h2>
+<p>Basically has two  methods</p>
+<pre><code class="language-rust">let x = vec![1,2,3,4,5];
+let y:Vec&lt;i32&gt; = Vec::new();
+</code></pre>
+<h2>Referencing a vector items</h2>
+<p>Basically has two  methods</p>
+<pre><code class="language-rust"> let third: &amp;i32 = &amp;v[2]; //=====&gt; strange but often used
+ //and  
+ let x = v.get(2) //===&gt; will return Option
+</code></pre>
+<h2>Iterating over vec</h2>
+<pre><code class="language-rust">let mut v = vec![1, 2, 3, 4, 5];
+
+for i in &amp;v {
+    println!(&quot;A reference to {}&quot;, i);
+}
+
+for i in &amp;mut v {
+    println!(&quot;A mutable reference to {}&quot;, i);
+}
+
+for i in v {
+    println!(&quot;Take ownership of the vector and its element {}&quot;, i);
+}
+</code></pre>
+<h2>Using Filters</h2>
+<p>We can extract a vector out of another vector using filter and collect.</p>
+<pre><code class="language-rust">let numbers: Vec&lt;i32&gt; = vec![
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+];
+
+let even_numbers = numbers
+  .into_iter()
+  .filter(|n| n % 2 == 0)
+  .collect::&lt;Vec&lt;_&gt;&gt;();
+
+println!(&quot;{:?}&quot;, even_numbers);
+</code></pre>
+<h3>Future Projects</h3>
+<ol>
+<li>check if a vec has some items of another vector (overlap).</li>
+<li>check if a vec has some items of another vector (superset).</li>
+<li>check if a vec is subset of another vec (subset).</li>
+<li>sort a vec.</li>
+<li>comparing two vectors.</li>
+</ol>
+
+    </body>
+</html>
+    

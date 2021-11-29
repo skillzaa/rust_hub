@@ -1,0 +1,44 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Slices</h1>
+<p>Another data type that does not have ownership is the slice. Slices let you reference a contiguous sequence of elements in a collection rather than the whole collection.
+A string slice is a reference to part of a String, and it looks like this:</p>
+<pre><code class="language-rust"> let s = String::from(&quot;hello world&quot;);
+
+    let hello = &amp;s[0..5];
+    let world = &amp;s[6..11];
+</code></pre>
+<p>if your slice includes the last byte of the String, you can drop the trailing number.</p>
+<pre><code class="language-rust">let slice = &amp;s[3..];
+</code></pre>
+<p>You can also drop both values to take a slice of the entire string.</p>
+<pre><code class="language-rust">let slice = &amp;s[..];
+</code></pre>
+<h3>String Literals Are Slices</h3>
+<p>The type of s here is &amp;str: it’s a slice pointing to that specific point of the binary. This is also why string literals are immutable; &amp;str is an immutable reference.</p>
+<pre><code class="language-rust">let s = &quot;Hello, world!&quot;;
+</code></pre>
+<p>I think functions should take &amp;str (string slices) as argument rather than String.</p>
+<blockquote>
+<p>A slice is a slice from a continuous sequence of memory. We can have slices of any vector or array. The &amp;str type is just a slice of some string.</p>
+</blockquote>
+
+    </body>
+</html>
+    

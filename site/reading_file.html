@@ -1,0 +1,33 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Reading File</h1>
+<p>It is as simple as that, even simpler than Javascript and PHP.</p>
+<pre><code class="language-rust">use std::fs;
+fn main() {
+    let file_name = &quot;test_doc.txt&quot;;
+    let content = fs::read_to_string(file_name).unwrap();
+    for line in content.lines() {
+        println!(&quot;{}&quot;, line);
+    }
+}
+</code></pre>
+
+    </body>
+</html>
+    

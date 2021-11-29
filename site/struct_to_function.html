@@ -1,0 +1,47 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Sending Struct to a Function</h1>
+<p>** #edit I think variable names have not been capitalized correctly**</p>
+<pre><code class="language-rust">struct Data {
+    name:String,
+    no1:u32,
+    no2:u32,
+}
+
+fn main() {
+let Data  = Data{
+name : String::from(&quot;Mike&quot;),
+no1 : 36,
+no2 : 92,
+};   
+
+
+let result:u32 = add(&amp;Data);
+println!(&quot;The name is  :: {}&quot;,Data.name);
+println!(&quot;the result is :: {}&quot;,result);
+}// main ends here
+
+fn add(Data : &amp;Data)-&gt;u32{
+    Data.no1+ Data.no2
+}
+</code></pre>
+
+    </body>
+</html>
+    

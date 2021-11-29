@@ -1,0 +1,33 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h2>Reserch</h2>
+<p>Functionality-wise, stdweb is an all-in-one-solution roughly equivalent to wasm_bindgen + web-sys + js-sys.</p>
+<p>wasm-bindgen definitely has more long term potential as it's officially supported by the Rust team not stdweb</p>
+<p>js-sys and web-sys aim to be the libc of JavaScript and the Web respectively,</p>
+<p>stdweb has low development speed</p>
+<p>Rust <strong>Hyper</strong> is the base framework for rocket and almost all other frameworks. The ActiX uses Tokio.</p>
+<p>The big thing is that js-sys and web-sys are built on top of wasm-bindgen. wasm-bindgen has been designed and built with an eye towards leveraging the &quot;host bindings&quot; proposal to eventually get even-faster-than-JS DOM performance, because DOM calls can be validated at wasm compile time rather than dynamically type checked on every call.</p>
+<p>wasm-bindgen's other focus is to enable you to only pay for what you use. If you only use js_sys::Array::new and js_sys::Array::push, then you won't entrench bindings to js_sys::Object::freeze in your binary.</p>
+<p>js-sys and web-sys are meant to be libc-style crates that just provide the raw bindings and building blocks. We want to get this layer rock solid so that no one else has to put in the effort to do the same, and can instead focus on higher level abstractions and libraries.</p>
+<p>I think the web-sys/js-sys should be seen as a kind of libc for the web, low level and complete, and wasm-bindgen as something that integrates into the rust build system, with just a single binary to run to generate your rust and js.</p>
+<p>wasm-bindgen facilitates communication between JavaScript and Rust compiled to WebAssembly. It allows you to speak in terms of Rust structs, JavaScript classes, strings, etc… instead of only the integers and floats supported by WebAssembly’s raw calling convention. You only pay for what you use,</p>
+
+    </body>
+</html>
+    

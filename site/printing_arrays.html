@@ -1,0 +1,46 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Pringting Arrays in Rust</h1>
+<p>Lets look at the simple task of printing an array to terminal:</p>
+<pre><code class="language-rust">
+  fn main(){
+
+    let a: [i32; 5] = [1, 2, 3, 4, 5];
+    println!(&quot;{}&quot;,a);
+
+}//--main
+
+</code></pre>
+<p>We are getting an error about printing a.</p>
+<pre><code>i32; 5]
+let a: [i32; 5] = [1, 2, 3, 4, 5];
+`[i32; 5]` doesn't implement `std::fmt::Display`
+
+`[i32; 5]` cannot be formatted with the default formatter
+
+help: the trait `std::fmt::Display` is not implemented for `[i32; 5]`
+</code></pre>
+<p>Display is a trait. To be printed out by println macro, the object needs to implement this trait.
+We can still print the array since println also use another trait for printing and that is &quot;Debug&quot; trait. To need to tell the println macro to use the Debug implementation and print the object. For this we just have to chage following:</p>
+<pre><code>    println!(&quot;{:?}&quot;,a);
+</code></pre>
+
+    </body>
+</html>
+    

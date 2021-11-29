@@ -1,0 +1,38 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>If let</h1>
+<p>You can think of if let as syntax sugar for a match that runs code when the value matches one pattern and then ignores all other values.</p>
+<p>This code:</p>
+<pre><code class="language-rust">  let config_max = Some(3u8);
+    match config_max {
+        Some(max) =&gt; println!(&quot;The maximum is configured to be {}&quot;, max),
+        _ =&gt; (),
+    }
+</code></pre>
+<p>Can be written as</p>
+<pre><code class="language-rust"> let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!(&quot;The maximum is configured to be {}&quot;, max);
+    }
+</code></pre>
+<p>We can include an else with an if let.</p>
+
+    </body>
+</html>
+    

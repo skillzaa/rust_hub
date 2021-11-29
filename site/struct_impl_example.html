@@ -1,0 +1,47 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Struct Impl Example</h1>
+<pre><code class="language-rust">#[derive(Debug)]
+
+struct Rectangle {
+    width:u32,
+    height:u32,
+}
+
+impl Rectangle {
+    fn area(&amp;self)-&gt; u32{
+        self.width * self.height
+    }
+}
+
+fn main(){
+
+let rect = Rectangle {
+    width:55,
+    height:80,
+};
+
+println!(&quot;The area is :: {}&quot;, rect.area());
+
+}//--main
+</code></pre>
+
+    </body>
+</html>
+    

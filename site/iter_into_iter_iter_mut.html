@@ -1,0 +1,60 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>Difference between iter(), into_iter(), and iter_mut()</h1>
+<p><a href="https://gist.github.com/philipjkim/98bc460d31773255fd2b20780a73b742">Credit</a></p>
+<pre><code class="language-rust">#[test]
+fn iter_demo() {
+    let v1 = vec![1, 2, 3];
+    let mut v1_iter = v1.iter();
+
+    // iter() returns an iterator of slices.
+    assert_eq!(v1_iter.next(), Some(&amp;1));
+    assert_eq!(v1_iter.next(), Some(&amp;2));
+    assert_eq!(v1_iter.next(), Some(&amp;3));
+    assert_eq!(v1_iter.next(), None);
+}
+
+#[test]
+fn into_iter_demo() {
+    let v1 = vec![1, 2, 3];
+    let mut v1_iter = v1.into_iter();
+
+    // into_iter() returns an iterator from a value.
+    assert_eq!(v1_iter.next(), Some(1));
+    assert_eq!(v1_iter.next(), Some(2));
+    assert_eq!(v1_iter.next(), Some(3));
+    assert_eq!(v1_iter.next(), None);
+}
+
+#[test]
+fn iter_mut_demo() {
+    let mut v1 = vec![1, 2, 3];
+    let mut v1_iter = v1.iter_mut();
+
+    // iter_mut() returns an iterator that allows modifying each value.
+    assert_eq!(v1_iter.next(), Some(&amp;mut 1));
+    assert_eq!(v1_iter.next(), Some(&amp;mut 2));
+    assert_eq!(v1_iter.next(), Some(&amp;mut 3));
+    assert_eq!(v1_iter.next(), None);
+}
+</code></pre>
+
+    </body>
+</html>
+    

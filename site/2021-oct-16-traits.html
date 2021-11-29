@@ -1,0 +1,99 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>2021-oct-16 Traits in Rust</h1>
+<h3>Definition</h3>
+<blockquote>
+<p>A trait is a collection of methods defined for an unknown type: Self. They can access other methods declared in the same trait.Traits can be implemented for any data type.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>A trait tells the Rust compiler about functionality a particular type has and can share with other types.We can use traits to define shared behavior in an abstract way.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>Traits are similar to a feature often called interfaces in other languages, although with some differences.</p>
+</blockquote>
+<hr />
+<ul>
+<li>When an object implements a trait it has to provide implementation for those methods for which default implementation is not provided. For methods which default implementation is provided can be over written or accepted.</li>
+</ul>
+<hr />
+<blockquote>
+<p>A type’s behavior consists of the methods we can call on that type. Different types share the same behavior if we can call the same methods on all of those types. Trait definitions are a way to group method signatures together to define a set of behaviors necessary to accomplish some purpose.</p>
+</blockquote>
+<hr />
+<ul>
+<li>Before using a trait we need to bring the trait into scope first.*Which means that this trait needs to be public in its own defined crate.</li>
+<li>One restriction to note with trait implementations is that we can implement a trait on a type only if either the trait or the type is local to our crate (means declared in that craten).We can’t implement external traits on external types</li>
+</ul>
+<h4>What is Dynamic Dispatch</h4>
+<p>In computer science, dynamic dispatch is the process of selecting which implementation of a polymorphic operation (method or function) to call at run time. It is commonly employed in, and considered a prime characteristic of, object-oriented programming (OOP) languages and systems.
+<strong>Polymorphism is the phenomenon wherein somewhat interchangeable objects each expose an operation of the same name but possibly differing in behavior</strong>
+OR
+<strong>polymorphism gives us the ability to present a single interface for potentially many different concrete types. This allows us to create more flexible APIs which give more control to the consumer and are easier to maintain.There are several practical advantages to using polymorphism, but one of the biggest is code re-use. If you design an API around specific, concrete types, then you’re committed to that approach, and so are your consumers.</strong></p>
+<ul>
+<li>We should keep the behaviour seperate from data so that it is flexable.</li>
+<li>Polymorphism allows us to create functions that accept any type, as long as those types exhibit certain behaviors or properties that we need them to have.</li>
+</ul>
+<!-- raw HTML omitted -->
+<p><strong>Static Dispatch</strong></p>
+<ul>
+<li>this approach leverages generics (also called parametric polymorphism) and (usually) trait bounds to provide the flexibility we need while still maintaining full type safety, and without requiring a lot of duplicate code. This approach is extremely performant (in Rust this is known as a “zero-cost abstraction”) - however, due to monomorphization, this does create a larger binary size.</li>
+</ul>
+<p><strong>Dynamic Dispatch</strong></p>
+<ul>
+<li>this approach uses “trait objects” to punt the decision of which type is required to satisfy some kind of polymorphic interface to runtime. This cuts down on binary size (as no monomorphization is used here) but incurs a performance penalty due to the extra lookup at runtime. This approach also explicitly forbids the use of generics.</li>
+<li>Dynamic dispatch can be characterized as the opposite of static dispatch. Where static dispatch choses to create copies of all functions that use generic parameters and store these in the binary, dynamic dispatch choses to store only a single copy, but then calculates the necessary concrete implementation at runtime.</li>
+<li>In Rust, dynamic dispatch leverages “Trait Objects” to achieve polymorphism. Unlike trait bounds, which is an optional constraint you can add to generic parameters, trait objects actually cannot be used with generics at all, and instead are the required method for performing dynamic dispatch in Rust.The syntax for trait objects these days is characterized by the dyn keyword, followed by the name of a Trait</li>
+<li>The dyn keyword was introduced in Rust 1.27 and is now the idiomatic way to explicitly specify that you wish to use dynamic dispatch through trait object.</li>
+<li>Even though we’re not using generic parameters, the compiler still needs a little help to know the size of our types at compile-time. This is why you’ll commonly see trait bounds passed in via reference.</li>
+</ul>
+<pre><code class="language-rust">fn dynamic_dispatch(t: &amp;dyn Growler) {
+    t.growl();
+}
+</code></pre>
+<hr />
+<h3>Traits as Parameters (trait bounds)</h3>
+<p><em>When we want to base our code on behaviour and not data type we specify a trait as an argument to a function</em> (and not a data type). In this way we can give this function any data type as long as that data type implements that trait.
+We normally create a Vector and wrap it in <strong>Box</strong> with <strong>dyn</strong> key word.</p>
+<h3>Trait Object</h3>
+<p>A trait object points to both an instance of a type implementing our specified trait as well as a table used to look up trait methods on that type at runtime But trait objects differ from traditional objects in that we can’t add data to a trait object. Trait objects aren’t as generally useful as objects in other languages: their specific purpose is to allow abstraction across common behavior.</p>
+<blockquote>
+<p>Trait objects are more like objects in other languages in the sense that they combine data and behavior.
+We create a trait object by specifying some sort of pointer, such as a &amp; reference or a Box<!-- raw HTML omitted --> smart pointer, then the dyn keyword, and then specifying the relevant trait. Trait objects must use a pointer.</p>
+</blockquote>
+<ul>
+<li>Trait objects can be thought of like objects of an Interface Type in Java, defining common functionality for the Types implementing them. When using a trait object, we don’t care what exact type is used, we just make sure that given functionality is present.</li>
+</ul>
+<hr />
+<blockquote>
+<p>‘Monomorphization’ a fancy term for saying the compiler fills in the concrete types for the generic ones at compile time and duplicates the code if necessary.</p>
+</blockquote>
+<hr />
+<h3>Conclusion</h3>
+<ul>
+<li>We use trait bounds (Traits as Parameters) with static dispatch along with generics. We get a seperate fn for each type at compile time.</li>
+<li>We use trait objects for dynamic dispatch. In this we use the <strong>dyn</strong> keyword and we do not use generics. A <strong>v table</strong> is used.</li>
+</ul>
+<hr />
+<hr />
+
+    </body>
+</html>
+    

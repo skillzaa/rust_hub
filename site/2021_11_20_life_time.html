@@ -1,0 +1,32 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h2>Life Time</h2>
+<h4>2021-11-20</h4>
+<p>We can use <strong>'static</strong> when we want to indicate that a variable should live as long as the programme its self. However this does not automatically does that.</p>
+<ul>
+<li>The issue of life times is all about <strong>returning references from a function</strong>.
+Since when a reference is originated in a function we return the reference but we need to tell the compiler to <em>keep it alive even after the function has ended</em>.
+For this we assign life-times to the <strong>incomming references</strong> and assign the same life-time to the returned ref.
+<strong>The purpose of life time is if we have reference type as incomming arguments and ref type return value. We need to tell Rust to keep the return ref as long as one omf the incomming arguments</strong></li>
+</ul>
+<h2>Life time sub-typing 'b:'a</h2>
+
+    </body>
+</html>
+    

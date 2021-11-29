@@ -1,0 +1,43 @@
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hulk</title>    
+<link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    
+    <header id="header">
+	<nav class="links" style="--items: 1;">
+		<a href="./index.html">Home</a>
+		<span class="line"></span>
+	</nav>
+</header>
+    <h1>How To Implement Display Trait</h1>
+<pre><code class="language-rust">use std::fmt;
+
+// Debug can be auto-generated
+#[derive(Debug)]
+struct MyType {
+    x: u32,
+    y: u32
+}
+
+// but not Display
+impl fmt::Display for MyType {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        write!(f, &quot;x={},y={}&quot;, self.x, self.y)
+    }
+}
+
+let t = MyType{x:1,y:2};
+println!(&quot;{}&quot;, t); //=&gt; x=1,y=2
+println!(&quot;{:?}&quot;, t); //=&gt; MyType { x: 1, y: 2 }
+</code></pre>
+
+    </body>
+</html>
+    
